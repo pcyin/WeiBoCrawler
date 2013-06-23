@@ -31,6 +31,7 @@ namespace WeiBoCrawler
             var database = rootNode.Descendants("database").First();
             string sqlConnString = "Database={0};Data Source={1};User Id={2};Password={3}";
             sqlConnString = String.Format(sqlConnString, database.Descendants("database").First().Value, database.Descendants("host").First().Value, database.Descendants("user").First().Value, database.Descendants("password").First().Value);
+            MySqlHelper.ConnectionStringLocalTransaction = sqlConnString;
 
             foreach (var crawler in crawlers) {
                 string id = crawler.Attribute("id").Value;

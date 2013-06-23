@@ -115,7 +115,7 @@ namespace WeiBoCrawler
                     }
                     else {
                         //SQL Update indicating job finish
-                        string finsihSql = "UPDATE WeiBoList SET com_finish = 1 WHERE url = @url";
+                        string finsihSql = "UPDATE WeiBoList SET com_finish = true WHERE url = @url";
                         MySqlHelper.ExecuteNonQuery(finsihSql, new MySqlParameter[]{
                             new MySqlParameter("url",pageUrl)
                         });

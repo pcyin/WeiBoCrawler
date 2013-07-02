@@ -9,7 +9,7 @@ namespace WeiBoCrawler
     class Ultility
     {
         public static bool Error(string content) {
-            return String.IsNullOrEmpty(content) || content.Contains("微博广场") && content.Contains("随便看看") && content.Contains("名人在说") || content.Contains("使用明文密码");
+            return String.IsNullOrEmpty(content) || content.Contains("微博广场") && content.Contains("随便看看") && content.Contains("名人在说") || content.Contains("使用明文密码") || content.Contains("您浏览的网页出错");
         }
         public static bool WeiBoNotExist(string content) {
             return content.Contains("微博不存在");

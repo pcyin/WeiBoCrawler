@@ -19,6 +19,7 @@ namespace WeiBoCrawler
         CookieCollection cookies;
         Uri proxyUri;
         HttpRequest request;
+        Random rnd = new Random();
 
         public WeiBoCommentCrawler(ConcurrentQueue<CommentCrawlJob> commentCrawQueue, CookieCollection cookies, Uri proxyUri)
         {
@@ -49,9 +50,11 @@ namespace WeiBoCrawler
                     string pageUrl = job.Url + "?page=" + pageId + "&st=86e0";
 
                     string content = request.GetHttpResponseStr(pageUrl);
+                    int errorNum = 0;
                     while (Ultility.Error(content))
                     {
-                        System.Threading.Thread.Sleep(5 * 1000);
+                        errorNum++;
+                        System.Threading.Thread.Sleep(30 * 1000 * errorNum);
                         content = request.GetHttpResponseStr(pageUrl);
                     }
                     if (Ultility.WeiBoNotExist(content))
@@ -84,8 +87,7 @@ namespace WeiBoCrawler
                         Console.WriteLine(String.Format("Url:{0} PageId:{1}", job.Url, pageId));
 
                     }
-
-                    System.Threading.Thread.Sleep(2 * 1000);
+                    System.Threading.Thread.Sleep(3500 + rnd.Next(5000));
                 }
 
 

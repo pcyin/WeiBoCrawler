@@ -19,7 +19,7 @@ namespace WeiBoCrawler
     {
         static void Main(string[] args)
         {
-            ConfigManager.IsUseProxy = true;
+            ConfigManager.IsUseProxy = false;
             ConcurrentQueue<string> urlQueue = new ConcurrentQueue<string>();
             ConcurrentQueue<CommentCrawlJob> comJobQueue = new ConcurrentQueue<CommentCrawlJob>();
             List<WeiBoContentCrawler> contentCrawlerList = new List<WeiBoContentCrawler>();
@@ -77,12 +77,14 @@ namespace WeiBoCrawler
             while (reader.Read()) {
                // if (!reader.IsDBNull(4))
                //     continue;
-
                 string url = reader.GetString(2);
                 urlQueue.Enqueue(url);
             }
             reader.Close();
             urlQueue.Enqueue("exit");
+
+
+
         }
     }
 }
